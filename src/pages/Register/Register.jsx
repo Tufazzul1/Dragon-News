@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
 
 
-const Login = () => {
+const Register = () => {
 
-    const handleLogin = e =>{
+    const handleRegister = e => {
         e.preventDefault();
         console.log(e.currentTarget)
         const form = new FormData(e.currentTarget);
@@ -15,11 +15,29 @@ const Login = () => {
         <div>
             <Navbar></Navbar>
             <div className="mt-10">
-                <h2 className="text-2xl text-center font-bold">Login Your Account</h2>
+                <h2 className="text-2xl text-center font-bold">Register Your Account</h2>
 
                 <div className="card shrink-0 w-full max-w-lg shadow-2xl bg-base-100 mx-auto">
-                    <form onSubmit={handleLogin} className="card-body">
+                    <form onSubmit={handleRegister} className="card-body">
                         <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Your Name</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Enter Your Name"
+                                className="input input-bordered"
+                                required />
+                            <label className="label">
+                                <span className="label-text">Photo URL</span>
+                            </label>
+                            <input
+                                type="text"
+                                name="photo"
+                                placeholder="Photo URL"
+                                className="input input-bordered"
+                                required />
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
@@ -45,14 +63,14 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
+                            <button className="btn btn-primary">Register</button>
                         </div>
                     </form>
-                    <p className="ml-4">Do not have an account ? Please <Link to={'/register'} className="text-blue-500 font-bold">Register</Link></p>
+                    <p className="ml-4">Already have an account ? Please <Link to={'/login'} className="text-blue-500 font-bold">Login</Link></p>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Login;
+export default Register;
