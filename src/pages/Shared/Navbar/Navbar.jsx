@@ -1,7 +1,19 @@
 import { Link, NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 const Navbar = () => {
+
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleSignOut = () => {
+        logOut()
+            .then()
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     const links = <>
         <li><NavLink className="mr-3" to={'/'}>Home</NavLink></li>
@@ -30,9 +42,16 @@ const Navbar = () => {
             </div>
             <div className="navbar-end gap-2">
                 <CgProfile className="text-3xl" />
-                <Link to={'/login'}>
-                <button className="btn">Login</button>
-                </Link>
+
+                {
+                    user ?
+                        <button onClick={handleSignOut} className="btn">Sign Out</button>
+                        :
+                        <Link to={'/login'}>
+                            <button className="btn">Login</button>
+                        </Link>
+                }
+
             </div>
         </div>
     );
